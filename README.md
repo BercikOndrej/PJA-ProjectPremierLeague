@@ -1,7 +1,7 @@
 # PJA Project - Premier League
 It is a `Enterprise web application` witch provides basic data about one season of the highest English football league, `Premier League`. Data is from season 2018/2019. Project contains two modules. For simplicity project doesn't include any tests.
 
-You need install appliaction Server for run this project. I'm using Glassfish application server version 6.2.2.
+You need install appliaction Server for run this project. I'm using `Glassfish application server version 6.2.2`. `Apache Netbeans` was used as IDE.
 
 ## Premier League - EJB packeges
 - This modul is focused on working with the database.
