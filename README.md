@@ -46,7 +46,7 @@ You need install appliaction Server for run this project. I'm using Glassfish ap
 - These classes are connect with `bean` from EJB modul
 
 
-### rest_api
+### REST api
 - This package contains definition of RESTfull API
 - It is created by files: \
 `ApplicationConfig` - Configuration (path, registration of classes) \
