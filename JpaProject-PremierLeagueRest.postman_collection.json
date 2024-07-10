@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "bd536638-db52-48f8-9e72-c4be089bb4bf",
+		"name": "JpaProject-PremierLeagueRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13842276"
+	},
+	"item": [
+		{
+			"name": "Players",
+			"item": [
+				{
+					"name": "getAllPlayers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/allPlayers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"allPlayers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlayersOfTeam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/playersOfTeam/Arsenal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"playersOfTeam",
+								"Arsenal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGoalkeepersOfTheTeam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/goalkeepersOfTeam/Arsenal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"goalkeepersOfTeam",
+								"Arsenal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDefendersOfTheTeam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/defendersOfTeam/Arsenal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"defendersOfTeam",
+								"Arsenal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMidfieldersOfTheTeam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/midfieldersOfTeam/Arsenal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"midfieldersOfTeam",
+								"Arsenal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getForwardsOfTheTeam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/forwardsOfTeam/Arsenal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"forwardsOfTeam",
+								"Arsenal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopScorers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/topScorers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"topScorers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlayersWithTheMostMinutesPlayed",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getTheOldestPlayers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getPlayersWithTheMostAssists",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getGoalkeepersWithTheMostCleanSheets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/goalkeepersWithTheMostCleanSheets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"goalkeepersWithTheMostCleanSheets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTheMostPunishedPlayers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/theMostPunishedPlayers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"theMostPunishedPlayers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAttackersOrderByTheirRank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/attackersOrderByTheirRank",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"attackersOrderByTheirRank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMidfieldersOrderByTheirRank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/midfieldersOrderByTheirRank",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"midfieldersOrderByTheirRank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlayerById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDefendersOrderByTheirRank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/player/defendersOrderByTheirRank",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"player",
+								"defendersOrderByTheirRank"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LeagueInfo",
+			"item": [
+				{
+					"name": "GetLeagueInfo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/leagueInfo/get",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"leagueInfo",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "getAllTeams",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/team/allTeams",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"team",
+								"allTeams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTeamsOrderByLeaguePosition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/team/teamsOrderByLeaguePosition",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"team",
+								"teamsOrderByLeaguePosition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTeamsOrderByLeaguePositionHome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/team/teamsOrderByLeaguePositionHome",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"team",
+								"teamsOrderByLeaguePositionHome"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTeamsOrderByLeaguePositionAway",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/team/teamsOrderByLeaguePositionAway",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"team",
+								"teamsOrderByLeaguePositionAway"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTeamByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/team/teamByName/Arsenal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"team",
+								"teamByName",
+								"Arsenal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTeamById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/PremierLeague-war/premierLeague/team/teamById/15",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"PremierLeague-war",
+								"premierLeague",
+								"team",
+								"teamById",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <ui:composition template="/templates/master_template.xhtml">
+
+        <!--Hlavička-->
+        <ui:define name="header">
+            <ui:include src="/templates/header.xhtml"/>
+        </ui:define>
+
+        <!--Navigační menu-->
+        <ui:define name="nav-menu">
+            <ui:include src="/templates/nav_menu.xhtml"/>
+        </ui:define>
+
+        <!--Content of website-->
+        <!--Save team into the ui:param-->
+        <ui:param name="id" value="#{param['id']}"/>
+        <ui:param name="team" value="#{teamsManager.getTeamById(id)}"/>
+
+        <ui:define name="main-content">
+            <div class="w3-light-gray" style='padding: 2em; '>
+                <div class="w3-content">
+                    <div class="w3-center">
+                        <h1 class="w3-center" style="margin: auto; margin-top:1em">#{team.commonName}</h1>
+                        <img src="resources/logo-placeholder.png"/>
+                    </div>
+
+                    <!--Brankaři-->
+                    <h3 class="w3-center">Goalkeepers</h3>
+                    <h:dataTable class="w3-left-align" cellspacing="15" frame="above" headerClass="w3-text-indigo" style="margin: auto" 
+                                value="#{playersManager.getGoalkeepersOfTheTeam(team.commonName)}" var="player">
+                        <h:column>
+                            <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                            #{playersManager.getGoalkeepersOfTheTeam(team.commonName).indexOf(player) + 1}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                            <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                        </h:column>
+                    </h:dataTable>
+
+                </div>
+                
+                <!--Grid for squad-->
+                <div class="w3-flex">
+                    
+                    <!--Defenders-->
+                    <div class="w3-flex-item">
+                        <h3 class="w3-center">Defenders</h3>
+                        <h:dataTable class="w3-left-align" cellspacing="15" frame="above" headerClass="w3-text-indigo" style="margin: auto" 
+                                     value="#{playersManager.getDefendersOfTheTeam(team.commonName)}" var="player">
+                            <h:column>
+                                <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                #{playersManager.getDefendersOfTheTeam(team.commonName).indexOf(player) + 1}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    
+                    <!--Midfielders-->
+                    <div class="w3-flex-item">
+                        <h3 class="w3-center">Midfielders</h3>
+                        <h:dataTable class="w3-left-align" cellspacing="15" frame="above" headerClass="w3-text-indigo" style="margin: auto" 
+                                     value="#{playersManager.getMidfieldersOfTheTeam(team.commonName)}" var="player">
+                            <h:column>
+                                <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                #{playersManager.getMidfieldersOfTheTeam(team.commonName).indexOf(player) + 1}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    
+                    <!--Forwards-->
+                    <div class="w3-flex-item">
+                        <h3 class="w3-center">Forwards</h3>
+                        <h:dataTable class="w3-left-align" cellspacing="15" frame="above" headerClass="w3-text-indigo" style="margin: auto" 
+                                     value="#{playersManager.getForwardsOfTheTeam(team.commonName)}" var="player">
+                            <h:column>
+                                <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                #{playersManager.getForwardsOfTheTeam(team.commonName).indexOf(player) + 1}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+                
+                <!--Grid for informations-->
+                <div class="w3-flex" style="margin-top: 2em">
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Matches played</h4>
+                        </header>
+                        <p class="w3-container">#{team.matchesPlayed}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Points per game</h4>
+                        </header>
+                        <p class="w3-container">#{team.pointsPerGame}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Attendance</h4>
+                        </header>
+                        <p class="w3-container">#{team.totalAttendance}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Average possession</h4>
+                        </header>
+                        <p class="w3-container">#{team.averagePossession}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Average possession home</h4>
+                        </header>
+                        <p class="w3-container">#{team.averagePossessionHome}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Average possession away</h4>
+                        </header>
+                        <p class="w3-container">#{team.averagePossessionAway}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Goals scored</h4>
+                        </header>
+                        <p class="w3-container">#{team.goalsScored}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Minutes per scoring a goal</h4>
+                        </header>
+                        <p class="w3-container">#{team.minutesPerGoalScored}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Shots on target</h4>
+                        </header>
+                        <p class="w3-container">#{team.shotsOnTarget}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Goals conceded</h4>
+                        </header>
+                        <p class="w3-container">#{team.goalsConceded}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Minutes per goal conceded</h4>
+                        </header>
+                        <p class="w3-container">#{team.minutesPerGoalConceded}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Clean sheets</h4>
+                        </header>
+                        <p class="w3-container">#{team.cleanSheets}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Corners</h4>
+                        </header>
+                        <p class="w3-container">#{team.totalCorners}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Cards</h4>
+                        </header>
+                        <p class="w3-container">#{team.totalCards}</p>
+                    </div>
+                    <div class="w3-card w3-flex-item">
+                        <header class="w3-container w3-indigo">
+                            <h4>Fouls</h4>
+                        </header>
+                        <p class="w3-container">#{team.fouls}</p>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+        <!--Patička-->
+        <ui:define name="footer">
+            <ui:include src="/templates/footer.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

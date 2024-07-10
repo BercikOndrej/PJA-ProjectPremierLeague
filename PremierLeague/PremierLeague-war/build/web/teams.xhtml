@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="defaultTheme" name="css/w3.css"/>
+        <h:outputStylesheet library="defaultTheme" name="css/flexbox.css"/>
+        <title>Premier League 2018/2019</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/master_template.xhtml">
+
+            <!--Hlavička-->
+            <ui:define name="header">
+                <ui:include src="/templates/header.xhtml"/>
+            </ui:define>
+
+            <!--Navigační menu-->
+            <ui:define name="nav-menu">
+                <ui:include src="/templates/nav_menu.xhtml"/>
+            </ui:define>
+
+            <!--Content of website-->
+            <ui:define name="main-content">
+                <div class="w3-light-gray" style='padding: 2em'>
+                    <div class="w3-content">
+                        <div class="w3-margin-top w3-left-align">
+                            <h2 class="w3-padding-top" style="margin-top: 0">Teams</h2>
+                            
+                            <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                         style="margin: auto; margin-top: 2em"
+                                         value="#{teamsManager.teamsOrderByName}" var="team">
+                                
+                                <h:column>
+                                    <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{team.id}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" class="w3-text-indigo"></f:facet>
+                                    <img width="35" height="35" src="resources/logo-placeholder.png"></img>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                    <a href="single-team.xhtml?id=#{team.id}">#{team.commonName}</a>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" class="w3-text-indigo">Country</f:facet>
+                                    #{team.country}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" class="w3-text-indigo">Total attendance</f:facet>
+                                    #{team.totalAttendance}
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+            <!--Patička-->
+            <ui:define name="footer">
+                <ui:include src="/templates/footer.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

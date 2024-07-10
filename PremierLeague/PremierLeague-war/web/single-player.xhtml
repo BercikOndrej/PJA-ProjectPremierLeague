@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="defaultTheme" name="css/w3.css"/>
+        <h:outputStylesheet library="defaultTheme" name="css/flexbox.css"/>
+        <title>Premier League 2018/2019</title>
+    </h:head>
+    <ui:composition template="/templates/master_template.xhtml">
+
+        <!--Hlavička-->
+        <ui:define name="header">
+            <ui:include src="/templates/header.xhtml"/>
+        </ui:define>
+
+        <!--Navigační menu-->
+        <ui:define name="nav-menu">
+            <ui:include src="/templates/nav_menu.xhtml"/>
+        </ui:define>
+
+        <!--Content of website-->
+        <!--Save team into the ui:param-->
+        <ui:param name="id" value="#{param['id']}"/>
+        <ui:param name="player" value="#{playersManager.getPlayerById(id)}"/>
+        
+        <ui:define name="main-content">
+            <div class="w3-light-gray" style='padding: 2em'>
+                <div class="w3-content">
+                    
+                    <div style="display: flex; flex-direction: row;margin-top: 1em">
+                        <img class="w3-flex-item" src="resources/player-placeholder.jpeg"
+                             width="200" height="200"/>
+                        <div class="w3-flex-item w3-container">
+                            <h3 class="w3-">#{player.fullName}</h3>
+                            <p>#{player.position} (#{player.club})</p>
+                            <p>#{player.nationality}</p>
+                            <p>Age: #{player.age} (#{player.birthday})</p>
+                            <p>Rank by his position: #{player.getRankByPosition()}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w3-flex" style="margin-top: 1em">
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Goals</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallGoals}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Minutes per goal</h4>
+                            </header>
+                            <p class="w3-container">#{player.minutesPerGoal}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Penalty goals</h4>
+                            </header>
+                            <p class="w3-container">#{player.penaltyGoals}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Assists</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallAssists}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Minutes per assist</h4>
+                            </header>
+                            <p class="w3-container">#{player.minutesPerAssist}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Clean sheets</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallCleanSheets}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Appearances</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallAppearances}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Minutes played</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallPlayedMinutes}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Average minutes per match</h4>
+                            </header>
+                            <p class="w3-container">#{player.minutesPerMatch}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Yellow cards</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallYellowCards}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Red cards</h4>
+                            </header>
+                            <p class="w3-container">#{player.overallRedCards}</p>
+                        </div>
+                        <div class="w3-card w3-flex-item">
+                            <header class="w3-container w3-indigo">
+                                <h4>Minutes per card</h4>
+                            </header>
+                            <p class="w3-container">#{player.minutesPerCard}</p>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+        </ui:define>
+
+        <!--Patička-->
+        <ui:define name="footer">
+            <ui:include src="/templates/footer.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="defaultTheme" name="css/w3.css"/>
+        <h:outputStylesheet library="defaultTheme" name="css/flexbox.css"/>
+        <title>Premier League 2018/2019</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/master_template.xhtml">
+
+            <!--Hlavička-->
+            <ui:define name="header">
+                <ui:include src="/templates/header.xhtml"/>
+            </ui:define>
+
+            <!--Navigační menu-->
+            <ui:define name="nav-menu">
+                <ui:include src="/templates/nav_menu.xhtml"/>
+            </ui:define>
+
+            <!--Content of website-->
+            <ui:define name="main-content">
+                <div class="w3-light-gray" style='padding: 2em'>
+                    <div class="w3-content">
+                        <div class="w3-margin-top w3-left-align">
+                            <h2 class="w3-padding-top" style="margin-top: 0">Players</h2>
+                            
+                            <!--Buttons for navigation-->
+                            <div class="w3-bar w3-indigo">
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players w3-blue" onclick="showPlayers(event, 'allPlayers')">All</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'topScorers')">Top scorers</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'topAssistants')">Top assistents</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'mostMinutesPlayers')">Most minutes players</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'mostPunishedPlayers')">Most punished players</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'goalkeepers')">Goalkeepers</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'defenders')">Defenders</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'midfielders')">Midfielders</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn-players" onclick="showPlayers(event, 'forwards')">Forwards</button>
+                                <script src="resources/scripts/tab-navigation.js"></script>
+                            </div>
+                            
+                            <!--All players-->
+                            <div id="allPlayers" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.players}" var="player">
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.players.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Nationality</f:facet>
+                                    #{player.nationality}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Team</f:facet>
+                                    #{player.club}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Age</f:facet>
+                                    #{player.age}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">G</f:facet>
+                                    #{player.overallGoals}
+                                    </h:column>
+                                    
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Top scorers-->
+                            <div id="topScorers" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.topScorers}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.topScorers.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                   
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">G</f:facet>
+                                        #{player.overallGoals}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">A</f:facet>
+                                        #{player.overallAssists}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Team</f:facet>
+                                        #{player.club}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Top assistents-->
+                            <div id="topAssistants" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.playersWithTheMostAssists}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.playersWithTheMostAssists.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">A</f:facet>
+                                        #{player.overallAssists}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">G</f:facet>
+                                        #{player.overallGoals}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Team</f:facet>
+                                        #{player.club}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Players with the most minutes-->
+                            <div id="mostMinutesPlayers" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.playersWithTheMostMinutesPlayed}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.playersWithTheMostMinutesPlayed.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Minutes</f:facet>
+                                        #{player.overallPlayedMinutes}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Team</f:facet>
+                                        #{player.club}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Most punished players-->
+                            <!--Here we must implement different work with player -> it is more complex db querry-->
+                            <!--which return List<Object[]>-->
+                            <div id="mostPunishedPlayers" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.editedPlayers}" var="player">
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{player[5]}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player[0]}">#{player[1]}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Score</f:facet>
+                                        #{player[4]}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Yellow c.</f:facet>
+                                        #{player[2]}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Red c.</f:facet>
+                                        #{player[3]}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Goalkeepers-->
+                            <div id="goalkeepers" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.goalkeepersWithTheMostCleanSheets}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.goalkeepersWithTheMostCleanSheets.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Team</f:facet>
+                                        #{player.club}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Clean sheets</f:facet>
+                                        #{player.overallCleanSheets}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Defenders-->
+                            <div id="defenders" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.defendersOrderByTheirRank}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.defendersOrderByTheirRank.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Team</f:facet>
+                                        #{player.club}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Yellow c.</f:facet>
+                                        #{player.overallYellowCards}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Red c.</f:facet>
+                                        #{player.overallRedCards}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Rank</f:facet>
+                                        #{player.rankInLeagueTopDefenders}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Midfielders-->
+                            <div id="midfielders" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.midfieldersOrderByTheirRank}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.midfieldersOrderByTheirRank.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Assists</f:facet>
+                                        #{player.overallAssists}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Goals</f:facet>
+                                        #{player.overallGoals}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Rank</f:facet>
+                                        #{player.rankInLeagueTopMidfielders}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            
+                            <!--Forwards-->
+                            <div id="forwards" class="playersBoards w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides" headerClass="w3-text-indigo" 
+                                             style="margin: auto; margin-top: 2em"
+                                             value="#{playersManager.attackersOrderByTheirRank}" var="player">
+
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">#</f:facet>
+                                        #{playersManager.attackersOrderByTheirRank.indexOf(player) + 1}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Name</f:facet>
+                                        <a href="single-player.xhtml?id=#{player.id}">#{player.fullName}</a>
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Goals</f:facet>
+                                        #{player.overallGoals}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Assists</f:facet>
+                                        #{player.overallAssists}
+                                    </h:column>
+                                 
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo">Rank</f:facet>
+                                        #{player.rankInLeagueTopAttackers}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            <script src="resources/scripts/tab-navigation.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+            <!--Patička-->
+            <ui:define name="footer">
+                <ui:include src="/templates/footer.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>

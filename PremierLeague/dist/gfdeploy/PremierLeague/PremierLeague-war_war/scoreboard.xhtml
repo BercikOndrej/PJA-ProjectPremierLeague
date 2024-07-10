@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="defaultTheme" name="css/w3.css"/>
+        <h:outputStylesheet library="defaultTheme" name="css/flexbox.css"/>
+        <script src="resources/scripts/scoreboard.js"></script>
+        <title>Premier League 2018/2019</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/master_template.xhtml">
+
+            <!--Hlavička-->
+            <ui:define name="header">
+                <ui:include src="/templates/header.xhtml"/>
+            </ui:define>
+
+            <!--Navigační menu-->
+            <ui:define name="nav-menu">
+                <ui:include src="/templates/nav_menu.xhtml"/>
+            </ui:define>
+
+            <!--Content of website-->
+            <ui:define name="main-content">
+                <div class="w3-light-gray" style='padding: 2em'>
+                    <div class="w3-content">
+                        <div class="w3-margin-top">
+                            <h2 class="w3-padding-top" style="margin-top: 0">Scoreboard</h2>
+                            
+                            <!--Buttons for navigation-->
+                            <div class="w3-bar w3-indigo">
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn w3-blue" onclick="showScoreboard(event, 'overall')">Overall</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn" onclick="showScoreboard(event, 'home')">Home</button>
+                                <button class="w3-bar-item w3-button w3-hover-blue tab-btn" onclick="showScoreboard(event, 'away')">Away</button>
+                            </div>
+                            
+                            <!--Overall scoreboard-->
+                            <div id="overall" class="scoreboard w3-left-align">
+                                <h:dataTable cellspacing="25" frame="hsides"  headerClass="w3-text-indigo" style=" margin: auto; margin-top: 2em; " 
+                                             value="#{teamsManager.teamsOrderByLeaguePosition}" var="team">
+                                    <h:column>
+                                        <f:facet name="header">P</f:facet>
+                                        #{team.leaguePosition}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo"></f:facet>
+                                        <img width="35" height="35" src="resources/logo-placeholder.png"></img>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet class="w3-text-indigo" name="header">Team</f:facet>
+                                        <a href="single-team.xhtml?id=#{team.id}">#{team.commonName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">MP</f:facet>
+                                        #{team.matchesPlayed}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">w</f:facet>
+                                        #{team.wins}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">D</f:facet>
+                                        #{team.draws}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">L</f:facet>
+                                        #{team.losses}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">G</f:facet>
+                                        #{team.goalsScored}:#{team.goalsConceded}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">GD</f:facet>
+                                        #{team.getGoalsDiference()}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">PTS</f:facet>
+                                        #{team.getPoints()}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Home scoreboard-->
+                            <div id="home" class="scoreboard w3-left-align" style="display: none">
+                                <h:dataTable cellspacing="25" frame="hsides" 
+                                             headerClass="w3-text-indigo" 
+                                             style=" margin: auto; margin-top: 2em;"
+                                             value="#{teamsManager.teamsOrderByLeaguePositionHome}" var="team">
+                                    <h:column>
+                                        <f:facet name="header">P</f:facet>
+                                        #{team.leaguePositionHome}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo"></f:facet>
+                                        <img width="35" height="35" src="resources/logo-placeholder.png"></img>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet class="w3-text-indigo" name="header">Team</f:facet>
+                                        <a href="single-team.xhtml?id=#{team.id}">#{team.commonName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">MP</f:facet>
+                                        #{team.matchesPlayedHome}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">w</f:facet>
+                                        #{team.winsHome}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">D</f:facet>
+                                        #{team.drawsHome}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">L</f:facet>
+                                        #{team.lossesHome}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">G</f:facet>
+                                        #{team.goalsScoredHome}:#{team.goalsConcededHome}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">GD</f:facet>
+                                        #{team.getGoalsDiferenceHome()}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">PTS</f:facet>
+                                        #{team.getPointsHome()}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                            <!--Away scoreboard-->
+                            <div id="away" class="scoreboard w3-left-align" style="display: none">
+                                <h:dataTable cellspacing="25" frame="hsides" 
+                                             headerClass="w3-text-indigo" 
+                                             style=" margin: auto; margin-top: 2em;"
+                                             value="#{teamsManager.teamsOrderByLeaguePositionAway}" var="team">
+                                    <h:column>
+                                        <f:facet name="header">P</f:facet>
+                                        #{team.leaguePositionAway}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header" class="w3-text-indigo"></f:facet>
+                                        <img width="35" height="35" src="resources/logo-placeholder.png"></img>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet class="w3-text-indigo" name="header">Team</f:facet>
+                                        <a href="single-team.xhtml?id=#{team.id}">#{team.commonName}</a>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">MP</f:facet>
+                                        #{team.matchesPlayedAway}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">w</f:facet>
+                                        #{team.winsAway}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">D</f:facet>
+                                        #{team.drawsAway}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">L</f:facet>
+                                        #{team.lossesAway}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">G</f:facet>
+                                        #{team.goalsScoredAway}:#{team.goalsConcededAway}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">GD</f:facet>
+                                        #{team.getGoalsDiferenceAway()}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">PTS</f:facet>
+                                        #{team.getPointsAway()}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <script src="resources/scripts/tab-navigation.js"></script>
+            </ui:define>
+
+            <!--Patička-->
+            <ui:define name="footer">
+                <ui:include src="/templates/footer.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
